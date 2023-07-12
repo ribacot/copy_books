@@ -11,7 +11,7 @@ export async function getQuery() {
     const resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books `
     );
-    container.insertAdjacentHTML('beforeend', markup(resp.data));
+    // container.insertAdjacentHTML('beforeend', markup(resp.data));
   } catch (err) {
     console.log(err);
   }
