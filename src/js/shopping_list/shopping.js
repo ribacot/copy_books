@@ -1,15 +1,22 @@
+import fetch from './serviceBook';
 import { marcupListBooks } from './marcupListBooks';
 import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
 import { onRemoveCard } from './remuve-card';
+import { shopListMobEl } from '../header';
 
-console.log('hello')
 const listBooksEl = document.querySelector('.js-list-books');
 const serchActivEl = document.querySelector('.home');
-const activPage = document.querySelector('.shopping-list');
+const activePage = document.querySelector('.shopping-list');
 let books = null;
 
-isActivePage.call(activPage);
+// оформлення активної сторінки
+
+if (window.innerWidth < 768) {
+  isActivePage.call(shopListMobEl);
+} else {
+  isActivePage.call(activePage);
+}
 
 try {
   books = JSON.parse(localStorage.getItem('savedBooks'));

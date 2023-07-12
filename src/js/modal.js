@@ -8,7 +8,7 @@ const modalEl = document.querySelector('.backdrop');
 const modalCard = document.querySelector('.modal');
 const closeButtonEl = document.querySelector('.modal-shopping-close');
 const modalShoppingEl = document.querySelector('.render-modal');
-
+const scrollUpBntEl = document.querySelector('.scroll-btn');
 let bookIdent;
 
 function isLocalStorage() {
@@ -21,6 +21,7 @@ function isLocalStorage() {
 function closeModal() {
   modalEl.classList.remove('active');
   modalCard.classList.remove('active');
+  scrollUpBntEl.classList.remove("visually-hidden");
   document.body.style.overflow = 'auto';
 }
 
@@ -64,7 +65,7 @@ function renderModal(bookData) {
           <ul class="shop-list">
             <li>
               <a href="${data.buy_links[0].url}">
-                <img src="${amazon}" alt="Amazon" />
+                <img src="${amazon}" alt="Amazon" class="darkFilterModal"/>
               </a>
             </li>
             <li>
@@ -87,13 +88,30 @@ function renderModal(bookData) {
   modalShoppingEl.insertAdjacentHTML('beforeend', modalMarkup);
 }
 
+// Застосування білого фільтру для картинки Амазон
+
+const imgFilterAmazon = () => {
+  const forAmazonFilterModal = document.querySelector('.darkFilterModal');
+
+  if (localStorage.getItem('theme') === 'dark') {
+    forAmazonFilterModal.classList.add('filter-img');
+    
+  } else {
+    forAmazonFilterModal.classList.remove('filter-img');
+  }
+};
+
+// ---
+
 async function callModal(bookId) {
-  try {
+  try { 
+    scrollUpBntEl.classList.add("visually-hidden");
     modalShoppingEl.innerHTML = '';
     const bookData = await fetchBookDetails(bookId);
     bookIdent = bookData[0]._id;
 
     renderModal(bookData);
+    imgFilterAmazon();
     renderModalButton(bookIdent);
   } catch (error) {
     console.error(error);
@@ -170,10 +188,8 @@ function renderModalButton(bookIdent) {
       submitShoppingEl.textContent = 'Login please';
     }
 
-    submitShoppingEl.addEventListener('click', event => {
-      deleteObjectLocal(bookIdent);
-      closeModal();
-    });
+    submitShoppingEl.addEventListener('click', handleRemoveButtonClick);
+    
   } else {
     const modalBtn = `
       <button type="submit" class="button book" aria-label="Add to shopping">
@@ -191,47 +207,78 @@ function renderModalButton(bookIdent) {
       submitShoppingEl.textContent = 'Login please';
     }
 
-    submitShoppingEl.addEventListener('click', event => {
-      saveObjectLocal(bookIdent);
-      closeModal();
-    });
+    submitShoppingEl.addEventListener('click', handleAddButtonClick);
   }
+}
+
+
+function handleAddButtonClick(event) {
+  saveObjectLocal(bookIdent);
+  closeModal();
+  removeModalButtonEventListeners();
+}
+
+function handleRemoveButtonClick(event) {
+  deleteObjectLocal(bookIdent);
+  closeModal();
+  removeModalButtonEventListeners();
+}
+
+function removeModalButtonEventListeners() {
+  const submitShoppingEl = document.querySelector('.button.book');
+  submitShoppingEl.removeEventListener('click', handleRemoveButtonClick);
+  submitShoppingEl.removeEventListener('click', handleAddButtonClick);
+}
+
+function modalBackdropClose(event) {
+  if (event.target === modalEl) {
+    closeModal();
+    removeModalEventListeners();
+  }
+}
+
+function modalCloseButtonClick(event) {
+  closeModal();
+  removeModalEventListeners();
+}
+
+function escapeKeyClose(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+    removeModalEventListeners();
+  }
+}
+
+function removeModalEventListeners() {
+  modalEl.removeEventListener('click', modalBackdropClose);
+  document.removeEventListener('keydown', escapeKeyClose);
+  closeButtonEl.removeEventListener('click', modalCloseButtonClick);
 }
 
 isLocalStorage();
 
 window.addEventListener('load', function () {
-  containerEl.addEventListener('click', event => {
-    let bookId;
-
-    if (event.target.tagName === 'BUTTON') {
-      getBookByCategory(event.target.dataset.catname);
-    }
-    if (event.target.classList.value.includes('js-ct')) {
-      bookId = event.target.parentElement.dataset.id;
-    }
-
-    if (bookId) {
-      callModal(bookId);
-      modalEl.classList.add('active');
-      modalCard.classList.add('active');
-      document.body.style.overflow = 'hidden';
-
-      modalEl.addEventListener('click', event => {
-        if (event.target === modalEl) {
-          closeModal();
-        }
-      });
-
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-          closeModal();
-        }
-      });
-
-      closeButtonEl.addEventListener('click', event => {
-        closeModal();
-      });
-    }
-  });
+  containerEl.addEventListener('click', containerClick);
 });
+
+function containerClick(event) {
+  let bookId;
+
+  if (event.target.tagName === 'BUTTON') {
+    getBookByCategory(event.target.dataset.catname);
+  }
+  if (event.target.classList.value.includes('js-ct')) {
+    bookId = event.target.parentElement.dataset.id;
+  }
+
+  if (bookId) {
+    callModal(bookId);
+    modalEl.classList.add('active');
+    modalCard.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    modalEl.addEventListener('click', modalBackdropClose);
+    document.addEventListener('keydown', escapeKeyClose);
+    closeButtonEl.addEventListener('click', modalCloseButtonClick);
+  }
+}

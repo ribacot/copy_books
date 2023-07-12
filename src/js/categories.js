@@ -1,9 +1,9 @@
 import { getQuery } from './hero';
 import { container as bookCard } from './hero';
 import { markup } from './hero';
-import axios from 'axios';
+
 const categoryList = document.querySelector('.category-list');
-// const axios = require('axios').default;
+const axios = require('axios').default;
 const btn = document.querySelector('.container-books');
 
 btn.addEventListener('click',onBtnClick)
@@ -30,11 +30,10 @@ categoryList.addEventListener('click', onCategoryListClick);
 getCategoryList();
 
 async function getCategoryList() {
-  console.log('hello')
   try{
-    const response = await axios.get(`https://books-backend.p.goit.global/books/category-list`);
-    console.log(response.data)
-    // renderCategory(response.data)
+    const response = await axios
+    .get(`https://books-backend.p.goit.global/books/category-list`);
+    renderCategory(response.data)
   } catch (error){
     console.log('error', error)
   }
