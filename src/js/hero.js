@@ -2,7 +2,10 @@ import axios from 'axios';
 
 export const container = document.querySelector('.container-books');
 
-if (!container.firstChild) getQuery();
+if (!container.firstChild) {
+  getQuery();
+  console.log('container.firstChild', container.firstChild)
+};
 
 function changeName() {}
 
@@ -11,6 +14,7 @@ export async function getQuery() {
     const resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books `
     );
+    console.log('getQuery', resp.data);
     // container.insertAdjacentHTML('beforeend', markup(resp.data));
   } catch (err) {
     console.log(err);
