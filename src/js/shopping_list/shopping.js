@@ -4,6 +4,7 @@ import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
 import { onRemoveCard } from './remuve-card';
 
+console.log('hello')
 const listBooksEl = document.querySelector('.js-list-books');
 const serchActivEl = document.querySelector('.home');
 const activPage = document.querySelector('.shopping-list');
