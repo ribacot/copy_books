@@ -1,9 +1,9 @@
 import { getQuery } from './hero';
 import { container as bookCard } from './hero';
 import { markup } from './hero';
-
+import axios from 'axios';
 const categoryList = document.querySelector('.category-list');
-const axios = require('axios').default;
+// const axios = require('axios').default;
 const btn = document.querySelector('.container-books');
 
 btn.addEventListener('click',onBtnClick)
