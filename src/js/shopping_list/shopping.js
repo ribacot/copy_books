@@ -27,7 +27,8 @@ try {
   } else {
     listBooksEl.innerHTML = marcupListBooks(books);
     listBooksEl.addEventListener('click', onRemoveCard);
-        isPagination();
+    setTimeout(isPagination(),0
+)
 
   }
 } catch (err) {
