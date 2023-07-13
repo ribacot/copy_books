@@ -23,6 +23,6 @@ export function onRemoveCard(e) {
     }
     listBooksEl.innerHTML = marcupListBooks(books);
   }
-      resetPag(booksADel.length);
+      // resetPag(booksADel.length);
 
 }
