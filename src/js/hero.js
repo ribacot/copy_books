@@ -11,7 +11,6 @@ export async function getQuery() {
     const resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books `
     );
-    console.log(resp.data);
     container.insertAdjacentHTML('beforeend', markup(resp.data));
   } catch (err) {
     console.log(err);
@@ -31,8 +30,8 @@ function markup(data) {
         <div class="book-card" data-id="${_id}">
         <div class="image-overlay" data-id="${_id}">
             <img class="book-img js-ct" src="${book_image}" alt="${title}" loading="lazy" />
-            <div class="image-description" data-id="${_id}">
-      <p class="image-overlay-description js-ct">quick view</p>
+            <div class="image-description js-ct" data-id="${_id}>
+      <p class="image-overlay-description js-ct"> quick view  </p>
      </div>
       </div>
             <h3 class="book-title js-ct">${title}</h3>

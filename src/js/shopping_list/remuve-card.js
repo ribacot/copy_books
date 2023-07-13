@@ -18,11 +18,10 @@ export function onRemoveCard(e) {
 
     localStorage.setItem('savedBooks', JSON.stringify(books));
     booksADel = JSON.parse(localStorage.getItem('savedBooks'));
+    resetPag(booksADel.length);
     if (!books.length) {
       return isEmpty();
     }
     listBooksEl.innerHTML = marcupListBooks(books);
   }
-      // resetPag(booksADel.length);
-
 }
