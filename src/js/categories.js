@@ -1,45 +1,45 @@
 import { getQuery } from './hero';
 import { container as bookCard } from './hero';
 import { markup } from './hero';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const categoryList = document.querySelector('.category-list');
 const axios = require('axios').default;
 const btn = document.querySelector('.container-books');
 
-btn.addEventListener('click',onBtnClick)
+btn.addEventListener('click', onBtnClick);
 
-
-function onBtnClick(event){
+function onBtnClick(event) {
   let btn = event.target.dataset.catname;
-  
+
   const itemEl = Array.from(categoryList.querySelectorAll('li'));
 
-  const findElem = itemEl.find((li) => li.innerText === btn);
-  const allCat = itemEl.find((li) => li.innerText.toLowerCase()  === `all categories`); 
- 
-  if (findElem){
+  const findElem = itemEl.find(li => li.innerText === btn);
+  const allCat = itemEl.find(
+    li => li.innerText.toLowerCase() === `all categories`
+  );
 
+  if (findElem) {
     allCat.classList.remove('categories__title-active');
-   findElem.classList.add('categories__title-active');
-  } return
+    findElem.classList.add('categories__title-active');
+  }
+  return;
 }
-
 
 categoryList.addEventListener('click', onCategoryListClick);
 
 getCategoryList();
 
 async function getCategoryList() {
-  try{
-    const response = await axios
-    .get(`https://books-backend.p.goit.global/books/category-list`);
-    renderCategory(response.data)
-  } catch (error){
-    console.log('error', error)
+  try {
+    const response = await axios.get(
+      `https://books-backend.p.goit.global/books/category-list`
+    );
+    renderCategory(response.data);
+  } catch (error) {
+    Notify.warning("Sorry, failed to load information");
   }
- 
 }
-
 
 function renderCategory(data) {
   let markup = data
@@ -54,20 +54,19 @@ function renderCategory(data) {
 function onCategoryListClick(event) {
   const idElem = event.target;
   const elem = document.querySelector('.categories__title-active');
-  
+
   if (idElem.tagName !== 'LI') {
     return;
   } else if (elem) {
     elem.classList.remove('categories__title-active');
-  }  event.target.classList.add('categories__title-active');
- 
+  }
+  event.target.classList.add('categories__title-active');
+
   if (idElem.textContent.trim() === 'All Categories') {
     bookCard.innerHTML = '';
     return getQuery();
-   
   }
   getBookByCategory(idElem.textContent.trim());
-  
 }
 
 export async function getBookByCategory(changeCategory) {
@@ -83,13 +82,13 @@ function renderedBookCardItem(data) {
     <h2 class ="main-title">${data[0].list_name}</h2>
     <ul class="book-list">${data
       .map(
-        ({ author, book_image, description, title, _id }) =>
+        ({ author, book_image, title, _id }) =>
           `<li class="bs-list-item">
           <div class="book-card " data-id="${_id}">
     <div class="image-overlay" data-id="${_id}">
     <img class="book-img js-ct" src="${book_image}" alt="${title} loading="lazy" >
-    <div class="image-description">
-      <p class="image-overlay-description"> quick view  </p>
+    <div class="image-description" data-id="${_id}">
+      <p class="image-overlay-description js-ct"> quick view  </p>
      </div>
       </div>
     <h3 class="book-title js-ct">${title}</h3>
