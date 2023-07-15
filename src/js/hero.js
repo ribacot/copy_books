@@ -4,21 +4,19 @@ const container = document.querySelector('.container-books');
 
 if (!container.firstChild) {
   getQuery()
-    .then(resp => container.insertAdjacentHTML('beforeend', markup(resp)))
+    .then(resp => container.insertAdjacentHTML('beforeend', markup(resp.data)))
     .catch(err => console.log(err));
 }
 
-async function getQuery() {
-  try {
+function getQuery() {
+
     console.log('before');
-    const resp = await axios(
+   return axios(
       `https://books-backend.p.goit.global/books/top-books`
     );
-    console.log('11', resp.data);
-    return resp.data;
-  } catch (err) {
-    Notify.warning('Sorry, failed to load information');
-  }
+  // } catch (err) {
+  //   Notify.warning('Sorry, failed to load information');
+  // }
 }
 
 function markup(data) {
