@@ -5,7 +5,7 @@ import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
 import { onRemoveCard } from './remuve-card';
 import { shopListMobEl, shopListDescEl } from '../header';
-
+import fetch from './serviceBook'
 const listBooksEl = document.querySelector('.js-list-books');
 let books = null;
 
