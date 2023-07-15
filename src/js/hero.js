@@ -14,6 +14,7 @@ export async function getQuery() {
   } catch (err) {
      Notify.warning("Sorry, failed to load information");
   }
+  console.log(resp.data)
       container.insertAdjacentHTML('beforeend', markup(resp.data));
 
 }
