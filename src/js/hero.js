@@ -11,7 +11,7 @@ if (!container.firstChild) {
 async function getQuery() {
   try {
     console.log('before');
-    const resp = await axios.get(
+    const resp = await axios(
       `https://books-backend.p.goit.global/books/top-books`
     );
     console.log('11', resp.data);

@@ -30,7 +30,7 @@ categoryList.addEventListener('click', onCategoryListClick);
 
 async function getCategoryList() {
   try {
-    const response = await axios.get(
+    const response = await axios(
       `https://books-backend.p.goit.global/books/category-list`
     );
     renderCategory(response.data);
