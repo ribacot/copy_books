@@ -1,16 +1,13 @@
-import fetch from './serviceBook';
 import { marcupListBooks } from './marcupListBooks';
 import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
 import { onRemoveCard } from './remuve-card';
-import { shopListMobEl } from '../header';
+import { shopListMobEl,shopListDescEl } from '../header';
 import { isPagination } from './pagination';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const listBooksEl = document.querySelector('.js-list-books');
-const serchActivEl = document.querySelector('.home');
-const activePage = document.querySelector('.shopping-list');
 let books = null;
 
 // оформлення активної сторінки
@@ -18,7 +15,7 @@ let books = null;
 if (window.innerWidth < 768) {
   isActivePage.call(shopListMobEl);
 } else {
-  isActivePage.call(activePage);
+  isActivePage.call(shopListDescEl);
 }
 
 try {

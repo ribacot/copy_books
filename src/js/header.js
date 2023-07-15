@@ -25,7 +25,7 @@ const bodyEl = document.querySelector('body');
 const spanSingUpEl = document.querySelector('.span-sing-up');
 const spanSingInEl = document.querySelector('.span-sing-in');
 const shopListDescEl = document.querySelector('.shop-list-desc-js');
-export const shopListMobEl = document.querySelector('.shop-list-mob-js');
+const shopListMobEl = document.querySelector('.shop-list-mob-js');
 const homeMobEl = document.querySelector('.home-mob-js');
 const homeDescEl = document.querySelector('.home-desc-js');
 
@@ -331,3 +331,5 @@ function handlerOpenLogout() {
     logoutDescEl.classList.add('visually-hidden');
   }
 }
+
+export{shopListDescEl,shopListMobEl}
