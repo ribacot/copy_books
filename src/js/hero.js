@@ -1,22 +1,29 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
-const container = document.querySelector('.container-books');
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-if (!container.firstChild) {
+export const container = document.querySelector('.container-books');
+
+if (!container.firstChild)
   getQuery()
-    .then(resp => container.insertAdjacentHTML('beforeend', markup(resp.data)))
+    .then(resp => {
+      console.log(resp);
+      container.insertAdjacentHTML('beforeend', markup(resp));
+    })
     .catch(err => console.log(err));
-}
 
-function getQuery() {
-
+export async function getQuery() {
+  try {
     console.log('before');
-   return axios(
-      `https://books-backend.p.goit.global/books/top-books`
+    const res = await axios(
+      `https://books-backend.p.goit.global/books/top-books `
     );
-  // } catch (err) {
-  //   Notify.warning('Sorry, failed to load information');
-  // }
+    console.log('after');
+
+    return res.data;
+    // container.insertAdjacentHTML('beforeend', markup(resp.data));
+  } catch (err) {
+    Notify.warning('Sorry, failed to load information');
+  }
 }
 
 function markup(data) {
@@ -50,4 +57,3 @@ function markup(data) {
   html = `<h1 class="main-title">Best Sellers <span>Books</span></h1>` + html;
   return html;
 }
-export { getQuery, container };
