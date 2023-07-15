@@ -1,10 +1,9 @@
-import { getQuery } from './hero';
-import { container as bookCard } from './hero';
-// import { markup } from './hero';
+// import { container as bookCard } from './hero';
+import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { getQuery } from './hero';
 
 const categoryList = document.querySelector('.category-list');
-const axios = require('axios').default;
 const btn = document.querySelector('.container-books');
 
 btn.addEventListener('click', onBtnClick);
@@ -69,7 +68,7 @@ function onCategoryListClick(event) {
   getBookByCategory(idElem.textContent.trim());
 }
 
-export async function getBookByCategory(changeCategory) {
+async function getBookByCategory(changeCategory) {
   await axios
     .get(
       `https://books-backend.p.goit.global/books/category?category=${changeCategory}`
@@ -109,3 +108,5 @@ function renderedBookCardItem(data) {
     `<span class="brendcolor">${lastWord}</span>`
   );
 }
+
+export{getBookByCategory}

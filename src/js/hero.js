@@ -1,6 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
-export const container = document.querySelector('.container-books');
+const container = document.querySelector('.container-books');
 
 if (!container.firstChild) getQuery();
 
@@ -53,4 +53,4 @@ function markup(data) {
   html = `<h1 class="main-title">Best Sellers <span>Books</span></h1>` + html;
   return html;
 }
-export { getQuery };
+export { getQuery,container };
