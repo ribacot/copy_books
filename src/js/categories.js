@@ -36,6 +36,7 @@ async function getCategoryList() {
     );
     renderCategory(response.data);
   } catch (error) {
+    console.log('getCategoryList',error);
     Notify.warning("Sorry, failed to load information");
   }
 }
