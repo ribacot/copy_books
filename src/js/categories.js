@@ -1,12 +1,11 @@
-// import { container as bookCard } from './hero';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getQuery } from './hero';
 
 const categoryList = document.querySelector('.category-list');
-const btn = document.querySelector('.container-books');
+const btnEl = document.querySelector('.container-books');
 
-btn.addEventListener('click', onBtnClick);
+btnEl.addEventListener('click', onBtnClick);
 
 function onBtnClick(event) {
   let btn = event.target.dataset.catname;
@@ -36,8 +35,8 @@ async function getCategoryList() {
     );
     renderCategory(response.data);
   } catch (error) {
-    console.log('getCategoryList',error);
-    Notify.warning("Sorry, failed to load information");
+    console.log('getCategoryList', error);
+    Notify.warning('Sorry, failed to load information');
   }
 }
 
@@ -110,4 +109,4 @@ function renderedBookCardItem(data) {
   );
 }
 
-export{getBookByCategory}
+export { getBookByCategory };
