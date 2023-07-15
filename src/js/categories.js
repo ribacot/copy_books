@@ -1,6 +1,6 @@
 import { getQuery } from './hero';
 import { container as bookCard } from './hero';
-import { markup } from './hero';
+// import { markup } from './hero';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const categoryList = document.querySelector('.category-list');
