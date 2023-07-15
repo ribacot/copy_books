@@ -4,18 +4,20 @@ export const container = document.querySelector('.container-books');
 
 if (!container.firstChild) getQuery();
 
-export async function getQuery() {
+async function getQuery() {
   let resp =' null';
   try {
     console.log('before')
     resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books`
     );
+      console.log(resp.data);
+
 console.log('after')
   } catch (err) {
      Notify.warning("Sorry, failed to load information");
   }
-  console.log(resp.data)
+  // console.log(resp.data)
       container.insertAdjacentHTML('beforeend', markup(resp.data));
 
 }
@@ -51,3 +53,4 @@ function markup(data) {
   html = `<h1 class="main-title">Best Sellers <span>Books</span></h1>` + html;
   return html;
 }
+export { getQuery };
