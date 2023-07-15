@@ -5,7 +5,7 @@ const container = document.querySelector('.container-books');
 if (!container.firstChild) { getQuery() };
 
 async function getQuery() {
-  let resp = ' null';
+  let resp = 'null';
   try {
     console.log('before');
     resp = await axios.get(
