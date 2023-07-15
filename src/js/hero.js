@@ -9,7 +9,7 @@ export async function getQuery() {
   let resp = null;
   try {
     resp = await axios.get(
-      `https://books-backend.p.goit.global/books/top-books `
+      `https://books-backend.p.goit.global/books/top-books`
     );
   } catch (err) {
      Notify.warning("Sorry, failed to load information");
