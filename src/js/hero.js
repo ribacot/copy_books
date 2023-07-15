@@ -1,16 +1,17 @@
-import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import axios from 'axios';
 export const container = document.querySelector('.container-books');
 
 if (!container.firstChild) getQuery();
 
 export async function getQuery() {
-  let resp = null;
+  let resp =' null';
   try {
+    console.log('before')
     resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books`
     );
+console.log('after')
   } catch (err) {
      Notify.warning("Sorry, failed to load information");
   }
