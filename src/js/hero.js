@@ -14,7 +14,7 @@ async function getQuery() {
     const resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books`
     );
-    console.log('111', resp.data);
+    console.log('11', resp.data);
     return resp.data;
   } catch (err) {
     Notify.warning('Sorry, failed to load information');
