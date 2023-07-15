@@ -1,11 +1,11 @@
+import { isPagination } from './pagination';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import axios from 'axios';
 import { marcupListBooks } from './marcupListBooks';
 import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
 import { onRemoveCard } from './remuve-card';
-import { shopListMobEl,shopListDescEl } from '../header';
-import { isPagination } from './pagination';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { shopListMobEl, shopListDescEl } from '../header';
 
 const listBooksEl = document.querySelector('.js-list-books');
 let books = null;
@@ -28,7 +28,7 @@ try {
     listBooksEl.addEventListener('click', onRemoveCard);
   }
 } catch (err) {
-  Notify.warning("Sorry, failed to load information");
+  Notify.warning('Sorry, failed to load information');
 }
 
 export { listBooksEl, books };
