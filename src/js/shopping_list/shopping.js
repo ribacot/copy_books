@@ -1,6 +1,5 @@
 import { isPagination } from './pagination';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import axios from 'axios';
 import { marcupListBooks } from './marcupListBooks';
 import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';

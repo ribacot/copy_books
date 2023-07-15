@@ -2,24 +2,23 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from 'axios';
 const container = document.querySelector('.container-books');
 
-if (!container.firstChild) getQuery();
+if (!container.firstChild) { getQuery() };
 
 async function getQuery() {
-  let resp =' null';
+  let resp = ' null';
   try {
-    console.log('before')
+    console.log('before');
     resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books`
     );
-      console.log(resp.data);
+    console.log('111',resp.data);
 
-console.log('after')
+    console.log('after');
   } catch (err) {
-     Notify.warning("Sorry, failed to load information");
+    Notify.warning('Sorry, failed to load information');
+    console.log('resp.data', resp.data);
   }
-  console.log('resp.data',resp.data)
-      container.insertAdjacentHTML('beforeend', markup(resp.data));
-
+  // container.insertAdjacentHTML('beforeend', markup(resp.data));
 }
 
 function markup(data) {
@@ -53,4 +52,4 @@ function markup(data) {
   html = `<h1 class="main-title">Best Sellers <span>Books</span></h1>` + html;
   return html;
 }
-export { getQuery,container };
+export { getQuery, container };
