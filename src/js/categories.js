@@ -1,11 +1,13 @@
-import axios from 'axios';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { getQuery } from './hero';
+import { container as bookCard } from './hero';
+import { markup } from './hero';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const categoryList = document.querySelector('.category-list');
-const btnEl = document.querySelector('.container-books');
+const axios = require('axios').default;
+const btn = document.querySelector('.container-books');
 
-btnEl.addEventListener('click', onBtnClick);
+btn.addEventListener('click', onBtnClick);
 
 function onBtnClick(event) {
   let btn = event.target.dataset.catname;
@@ -30,13 +32,12 @@ getCategoryList();
 
 async function getCategoryList() {
   try {
-    const response = await axios(
+    const response = await axios.get(
       `https://books-backend.p.goit.global/books/category-list`
     );
     renderCategory(response.data);
   } catch (error) {
-    console.log('getCategoryList', error);
-    Notify.warning('Sorry, failed to load information');
+    Notify.warning("Sorry, failed to load information");
   }
 }
 
@@ -68,7 +69,7 @@ function onCategoryListClick(event) {
   getBookByCategory(idElem.textContent.trim());
 }
 
-async function getBookByCategory(changeCategory) {
+export async function getBookByCategory(changeCategory) {
   await axios
     .get(
       `https://books-backend.p.goit.global/books/category?category=${changeCategory}`
@@ -108,5 +109,3 @@ function renderedBookCardItem(data) {
     `<span class="brendcolor">${lastWord}</span>`
   );
 }
-
-export { getBookByCategory };

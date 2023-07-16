@@ -5,17 +5,16 @@ export const container = document.querySelector('.container-books');
 
 if (!container.firstChild) getQuery();
 
+function changeName() {}
 
 export async function getQuery() {
   try {
-    console.log('before');
     const resp = await axios.get(
       `https://books-backend.p.goit.global/books/top-books `
     );
-    console.log('after');
     container.insertAdjacentHTML('beforeend', markup(resp.data));
   } catch (err) {
-    Notify.warning('Sorry, failed to load information');
+     Notify.warning("Sorry, failed to load information");
   }
 }
 
