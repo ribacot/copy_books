@@ -1,10 +1,13 @@
 import { isPagination } from './pagination';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { marcupListBooks } from './marcupListBooks';
 import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
 import { onRemoveCard } from './remuve-card';
 import { shopListMobEl, shopListDescEl } from '../header';
+import fetch from './serviceBook'
+
 const listBooksEl = document.querySelector('.js-list-books');
 let books = null;
 
