@@ -54,7 +54,6 @@ const charityFunds = [
     url: 'https://prytulafoundation.org/en',
     img: serhiyPrytulaCharityFoundation,
   },
-    
 ];
 
 const supportList = document.querySelector('.support-list');
@@ -62,7 +61,7 @@ const supportList = document.querySelector('.support-list');
 function generateListItems() {
   return charityFunds
     .map(
-      (fund) =>
+      fund =>
         `<li class="support-item" aria-label="${fund.title}">
           <div class="fund-container">
             <img src="${fund.img}" alt="${fund.title}" class="support-logo" data-url="${fund.url}" width="auto" height="32px">
@@ -71,7 +70,6 @@ function generateListItems() {
     )
     .join('');
 }
-
 
 supportList.innerHTML = generateListItems();
 
@@ -82,7 +80,8 @@ const items = container.querySelectorAll('.support-item');
 const containerHeight = container.offsetHeight;
 const firstItemHeight = items[0].offsetHeight;
 const numItems = items.length;
-const gapHeight = (containerHeight - (firstItemHeight * numItems)) / (numItems - 1);
+const gapHeight =
+  (containerHeight - firstItemHeight * numItems) / (numItems - 1);
 const listItemHeight = firstItemHeight + gapHeight;
 
 // слайдер з поверненням в початкову позицію і плавним скролом
@@ -92,7 +91,7 @@ let scrollPosition = 0;
 
 seeMoreButton.addEventListener('click', () => {
   scrollPosition += listItemHeight;
-  if (scrollPosition > (numItems - 5)*listItemHeight) {
+  if (scrollPosition > (numItems - 5) * listItemHeight) {
     scrollPosition = 0;
   }
 
@@ -104,7 +103,7 @@ seeMoreButton.addEventListener('click', () => {
 });
 
 // клік поза блоком суппорт = повернення списку в висхідне положення
-document.addEventListener('click', (event) => {
+document.addEventListener('click', event => {
   const isClickedOutside = !event.target.closest('.support');
   if (isClickedOutside) {
     scrollPosition = 0;
@@ -118,14 +117,9 @@ document.addEventListener('click', (event) => {
 
 // відкривання фонду в новій вкладці
 const supportLogos = document.querySelectorAll('.support-logo');
-supportLogos.forEach((logo) => {
+supportLogos.forEach(logo => {
   logo.addEventListener('click', function () {
     const url = this.getAttribute('data-url');
     window.open(url, '_blank');
   });
 });
-
-
-
-
-
