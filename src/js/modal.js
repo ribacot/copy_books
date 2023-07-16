@@ -38,6 +38,7 @@ async function fetchBookDetails(bookId) {
     const bookData = await response.json();
     return [bookData];
   } catch (error) {
+    console.log(error)
     Notify.warning("Sorry, failed to load information");
   }
 }
@@ -113,6 +114,7 @@ async function callModal(bookId) {
     imgFilterAmazon();
     renderModalButton(bookIdent);
   } catch (error) {
+    console.log(error)
     Notify.warning("Sorry, failed to load information");
   }
 }
@@ -147,6 +149,7 @@ async function saveObjectLocal(bookIdent) {
 
     localStorage.setItem('savedBooks', JSON.stringify(savedBooks));
   } catch (error) {
+    console.log(error)
     Notify.warning("Sorry, failed to load information");
   }
 }
