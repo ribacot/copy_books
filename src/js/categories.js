@@ -26,7 +26,7 @@ function onBtnClick(event) {
 
 categoryList.addEventListener('click', onCategoryListClick);
 
-// getCategoryList();
+getCategoryList();
 
 async function getCategoryList() {
   try {
