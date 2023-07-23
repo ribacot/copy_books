@@ -109,3 +109,4 @@
 //     `<span class="brendcolor">${lastWord}</span>`
 //   );
 // }
+// console.log('hello');
