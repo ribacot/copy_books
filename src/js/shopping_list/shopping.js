@@ -1,4 +1,4 @@
-// import fetch from './serviceBook';
+import fetch from './serviceBook';
 import { marcupListBooks } from './marcupListBooks';
 import { isActivePage } from '../is-active-page';
 import { isEmpty } from './isEmpty';
@@ -6,7 +6,7 @@ import { onRemoveCard } from './remuve-card';
 import { shopListMobEl } from '../header';
 import { isPagination } from './pagination';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+fetch();
 
 const listBooksEl = document.querySelector('.js-list-books');
 const serchActivEl = document.querySelector('.home');
