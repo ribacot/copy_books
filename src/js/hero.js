@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import getQuery from './hero_2';
+// import getQuery from './hero_2';
 
 console.log("axios_hero", axios);
 export const container = document.querySelector('.container-books');
@@ -8,21 +8,21 @@ if (!container.firstChild) getQuery();
 
 function changeName() {}
 
-// export default async function () {
-//   try {
-//     console.log('axios_in', axios);
+export  async function getQuery () {
+  try {
+    console.log('axios_in', axios);
 
-//     console.log('befor');
-//     const resp = await axios.get(
-//       `https://books-backend.p.goit.global/books/top-books`
-//     );
-//     console.log('after');
-//     container.insertAdjacentHTML('beforeend', markup(resp.data));
-//   } catch (err) {
-//     console.log(err);
-//     Notify.warning('Sorry, failed to load information');
-//   }
-// }
+    console.log('befor');
+    const resp = await axios.get(
+      `https://books-backend.p.goit.global/books/top-books`
+    );
+    console.log('after');
+    container.insertAdjacentHTML('beforeend', markup(resp.data));
+  } catch (err) {
+    console.log(err);
+    Notify.warning('Sorry, failed to load information');
+  }
+}
 
 
 
