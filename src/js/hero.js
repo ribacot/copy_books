@@ -9,7 +9,7 @@ function changeName() {}
 
 export async function getQuery() {
   try {
-    console.log("axios_in", ()=>axios.get('https://google.com'));
+    console.log("axios_in", axios.get('https://google.com'));
 
     console.log('befor')
     const resp = await axios.get(`https://books-backend.p.goit.global/books/top-books`);
