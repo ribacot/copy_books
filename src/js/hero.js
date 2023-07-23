@@ -10,18 +10,12 @@ function changeName() {}
 export async function getQuery() {
   try {
     const resp = await axios.get(`https://books-backend.p.goit.global/books/top-books`);
-    return resp.data
     
+    container.insertAdjacentHTML('beforeend', markup(resp.data));
   } catch (err) {
     console.log(err);
      Notify.warning("Sorry, failed to load information");
   }
-}
-renderHero()
-async function renderHero() {
-  const data=await getQuery()
-     container.insertAdjacentHTML('beforeend', markup(data));
- 
 }
 
 
