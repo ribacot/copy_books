@@ -7,7 +7,7 @@ export default async function () {
     console.log('axios_in', axios);
 
     console.log('befor');
-    const resp = await axios.get(
+    const resp = await axios(
       `https://books-backend.p.goit.global/books/top-books`
     );
     console.log('after');
