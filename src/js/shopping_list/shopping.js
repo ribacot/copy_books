@@ -31,6 +31,7 @@ try {
     listBooksEl.addEventListener('click', onRemoveCard);
   }
 } catch (err) {
+  console.log(err)
   Notify.warning("Sorry, failed to load information");
 }
 
