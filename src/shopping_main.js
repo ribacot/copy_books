@@ -5,3 +5,4 @@ import './js/shopping_list/shopping';
 import './js/loader';
 import './js/scrollUp';
 import './js/shopping_list/pagination';
+import './js/modalLogin'
