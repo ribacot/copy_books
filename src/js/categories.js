@@ -34,7 +34,7 @@ async function getCategoryList() {
     const response = await axios.get(
       `https://books-backend.p.goit.global/books/category-list`
     );
-    return  renderCategory(response.data);
+    renderCategory(response.data);
   } catch (error) {
     console.log(error)
     Notify.warning("Sorry, failed to load information");
@@ -48,7 +48,7 @@ function renderCategory(data) {
     )
     .join('');
   markup = `<li class = "category-list-item"> All Categories </li>` + markup;
- return   categoryList.innerHTML = markup;
+  categoryList.innerHTML = markup;
 }
 
 function onCategoryListClick(event) {
@@ -70,7 +70,7 @@ function onCategoryListClick(event) {
 }
 
 export async function getBookByCategory(changeCategory) {
-  return  await axios
+  await axios
     .get(
       `https://books-backend.p.goit.global/books/category?category=${changeCategory}`
     )
