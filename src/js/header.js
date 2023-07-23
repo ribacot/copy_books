@@ -273,7 +273,7 @@ function checkUser() {
     const user = JSON.parse(localStorage.getItem('userInSite'));
     userNameMobEl.textContent = user.name;
     userNameEl.textContent = user.name;
-    userImgEl.src = user.photoURL;
+    // userImgEl.src = user.photoURL;
 
     loginBtnMobEl.classList.add('visually-hidden');
     loginBtnEl.classList.add('visually-hidden');
